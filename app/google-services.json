@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "216179580965",
+    "project_id": "the-character-vault",
+    "storage_bucket": "the-character-vault.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216179580965:android:80fc5cd612bc4625b25fcc",
+        "android_client_info": {
+          "package_name": "com.fexed.charactersheet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216179580965-jbkcl92u6hgkagc5pmt5afao6dbhf08t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fexed.charactersheet",
+            "certificate_hash": "3b7bba9d77409822f228536ab5179e73d0619704"
+          }
+        },
+        {
+          "client_id": "216179580965-3ahi6rpgqgf3ualq3p48tif0al1191u1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsVwx1MRCrLcncxYUOtAkEFLhJzG4OL00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216179580965-3ahi6rpgqgf3ualq3p48tif0al1191u1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp"
+        tools:context=".Settings">
+
+        <TextView
+            android:id="@+id/dicethrown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/resettutorialbtn"
+            app:layout_constraintStart_toStartOf="@+id/resettutorialbtn"
+            app:layout_constraintTop_toBottomOf="@+id/resettutorialbtn"
+            tools:text="99999" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditstitle"
+            app:srcCompat="@mipmap/app_icon" />
+
+        <TextView
+            android:id="@+id/medebytxtv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/medebytxtv5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/resettutorialtxt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/resettutorialbtn"
+            app:layout_constraintEnd_toStartOf="@+id/resettutorialbtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/resettutorialbtn" />
+
+        <TextView
+            android:id="@+id/medebytxtv7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/dicethrown"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/dicethrown"
+            app:layout_constraintEnd_toStartOf="@+id/resettutorialbtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dicethrown" />
+
+        <Button
+            android:id="@+id/resettutorialbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="Reset"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/creditstitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Credits"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dicethrown" />
+
+        <TextView
+            android:id="@+id/medebytxtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Made by"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/medebytxtv6" />
+
+        <TextView
+            android:id="@+id/vertxtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Current version"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resbytxtv5" />
+
+        <TextView
+            android:id="@+id/vertxtv2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ratepls"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vertxt" />
+
+        <TextView
+            android:id="@+id/vertxtv3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/disclaimer"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/medebytxtv4" />
+
+        <TextView
+            android:id="@+id/vertxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/resbytxtv3"
+            app:layout_constraintTop_toBottomOf="@+id/vertxtv"
+            tools:text="0.1" />
+
+        <TextView
+            android:id="@+id/resbytxtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Icons by"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/medebytxtv3" />
+
+        <TextView
+            android:id="@+id/resbytxtv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Balloons by"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resbytxtv3" />
+
+        <TextView
+            android:id="@+id/resbytxtv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Hilton Perantunes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/medebytxtv2"
+            app:layout_constraintTop_toBottomOf="@+id/resbytxtv" />
+
+        <TextView
+            android:id="@+id/resbytxtv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Online Web Fonts"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/medebytxtv2"
+            app:layout_constraintTop_toBottomOf="@+id/resbytxtv2" />
+
+        <TextView
+            android:id="@+id/resbytxtv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Jaewoong Eum"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/medebytxtv2"
+            app:layout_constraintTop_toBottomOf="@+id/resbytxtv4" />
+
+        <TextView
+            android:id="@+id/medebytxtv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="fexed"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/medebytxtv"
+            app:layout_constraintTop_toBottomOf="@+id/medebytxtv" />
+
+        <TextView
+            android:id="@+id/medebytxtv3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:autoLink="web"
+            android:text="https://fexed.github.io/"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/medebytxtv2"
+            app:layout_constraintTop_toTopOf="@+id/medebytxtv2" />
+
+        <TextView
+            android:id="@+id/medebytxtv4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:autoLink="web"
+            android:text="@string/rateplslink"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/vertxtv2"
+            app:layout_constraintStart_toStartOf="@+id/vertxtv2"
+            app:layout_constraintTop_toBottomOf="@+id/vertxtv2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

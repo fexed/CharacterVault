@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/newmacro_cancel"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/annulla"
+        app:layout_constraintEnd_toStartOf="@+id/newmacro_ok"
+        app:layout_constraintTop_toBottomOf="@+id/newmacrostatlbl" />
+
+    <Button
+        android:id="@+id/newmacro_ok"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newmacrostatlbl" />
+
+    <TextView
+        android:id="@+id/newmacrotitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newmacro"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/newmacro_separatorD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/newmacro_n"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_n"
+        app:layout_constraintTop_toTopOf="@+id/newmacro_n" />
+
+    <EditText
+        android:id="@+id/newmacro_n"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="1"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newmacrotitle" />
+
+    <EditText
+        android:id="@+id/newmacro_max"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="20"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_separatorD"
+        app:layout_constraintTop_toBottomOf="@+id/newmacrotitle" />
+
+    <TextView
+        android:id="@+id/newmacro_separatoplus1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="+"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/newmacro_n"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_max"
+        app:layout_constraintTop_toTopOf="@+id/newmacro_n" />
+
+    <CheckBox
+        android:id="@+id/profchckbx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/newmacro_max"
+        app:layout_constraintEnd_toEndOf="@+id/newmacroproflbl"
+        app:layout_constraintStart_toStartOf="@+id/newmacroproflbl"
+        app:layout_constraintTop_toTopOf="@+id/newmacro_max" />
+
+    <TextView
+        android:id="@+id/newmacroproflbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/comp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_separatoplus1"
+        app:layout_constraintTop_toBottomOf="@+id/newmacro_separatoplus1" />
+
+    <TextView
+        android:id="@+id/newmacro_separatoplus2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/newmacro_n"
+        app:layout_constraintStart_toEndOf="@+id/newmacroproflbl"
+        app:layout_constraintTop_toTopOf="@+id/newmacro_n" />
+
+    <Spinner
+        android:id="@+id/newmacro_stat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:entries="@array/selectablestats"
+        app:layout_constraintBottom_toBottomOf="@+id/profchckbx"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_separatoplus2"
+        app:layout_constraintTop_toTopOf="@+id/profchckbx" />
+
+    <TextView
+        android:id="@+id/newmacrostatlbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stat"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="@+id/newmacro_stat"
+        app:layout_constraintStart_toStartOf="@+id/newmacro_stat"
+        app:layout_constraintTop_toTopOf="@+id/newmacroproflbl" />
+
+    <TextView
+        android:id="@+id/newmacro_separatoplus3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="+"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/newmacro_n"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_stat"
+        app:layout_constraintTop_toTopOf="@+id/newmacro_n" />
+
+    <EditText
+        android:id="@+id/newmacro_bonus"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/newmacro_separatoplus3"
+        app:layout_constraintTop_toBottomOf="@+id/newmacrotitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

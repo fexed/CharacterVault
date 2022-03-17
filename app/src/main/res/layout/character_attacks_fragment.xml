@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AttacksFragment">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/atkdicefab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:src="@drawable/d20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="64dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atks_pgprof">
+
+        <TextView
+            android:id="@+id/atkslbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/attacchi"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="14sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attacksrecv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/optionsfab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:src="@drawable/edit"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toTopOf="@+id/atkdicefab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="32dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/clearfab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:src="@drawable/editoff"
+        android:visibility="invisible"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/atkdicefab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="32dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addfab"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:src="@drawable/add"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/optionsfab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="24dp"
+        app:fabSize="mini"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/removefab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:src="@drawable/remove"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/addfab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="24dp"
+        app:fabSize="mini"/>
+
+    <TextView
+        android:id="@+id/atks_pgprof"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/atks_pglv"
+        app:layout_constraintTop_toBottomOf="@+id/atks_pglv"
+        tools:text="+25" />
+
+    <TextView
+        android:id="@+id/atks_pgproflbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/atks_pgprof"
+        app:layout_constraintEnd_toEndOf="@+id/atks_pglvllbl"
+        app:layout_constraintTop_toTopOf="@+id/atks_pgprof" />
+
+    <TextView
+        android:id="@+id/atks_pgname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/atks_pglvllbl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="character_name" />
+
+    <TextView
+        android:id="@+id/atks_pglvllbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/livello_totale"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/atks_pglv"
+        app:layout_constraintEnd_toStartOf="@+id/atks_pglv"
+        app:layout_constraintTop_toTopOf="@+id/atks_pglv" />
+
+    <TextView
+        android:id="@+id/atks_pglv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="LV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/atkrolltitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Attack name" />
+
+    <TextView
+        android:id="@+id/atkrolltext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/atkrolldice2"
+        app:layout_constraintStart_toStartOf="@+id/atkrolldice2"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolltitle"
+        tools:text="1D20 + 2" />
+
+    <TextView
+        android:id="@+id/atkdmgtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/atkrolldice3"
+        app:layout_constraintStart_toStartOf="@+id/atkrolldice3"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolltitle"
+        tools:text="1D20 + 2" />
+
+    <TextView
+        android:id="@+id/atkrollresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/atkrolldice"
+        app:layout_constraintStart_toStartOf="@+id/atkrolldice"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolldice2"
+        tools:text="18" />
+
+    <TextView
+        android:id="@+id/atkdmgresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="@+id/atkdmgdice"
+        app:layout_constraintStart_toStartOf="@+id/atkdmgdice"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolldice3"
+        tools:text="18" />
+
+    <TextView
+        android:id="@+id/atkrollnattxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atkdmgdice"
+        tools:text="Attack name" />
+
+    <TextView
+        android:id="@+id/atkrolldice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="10sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/atkrollresult"
+        tools:text="dices" />
+
+    <TextView
+        android:id="@+id/atkdmgdice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="10sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/atkrollresult"
+        app:layout_constraintTop_toBottomOf="@+id/atkdmgresult"
+        tools:text="dices" />
+
+    <TextView
+        android:id="@+id/atkrolldice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/attack"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="10sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/atkrollresult"
+        app:layout_constraintStart_toStartOf="@+id/atkrollresult"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolltext" />
+
+    <TextView
+        android:id="@+id/atkrolldice3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/damage"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="10sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/atkdmgresult"
+        app:layout_constraintStart_toStartOf="@+id/atkdmgresult"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolltext" />
+</androidx.constraintlayout.widget.ConstraintLayout>

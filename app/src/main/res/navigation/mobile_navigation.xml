@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_summary">
+
+    <fragment
+        android:id="@+id/navigation_summary"
+        android:name="com.fexed.charactersheet.ui.charactersummary.CharacterSummary"
+        android:label="@string/summary"
+        tools:layout="@layout/character_summary_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_skills"
+        android:name="com.fexed.charactersheet.ui.characterskills.CharacterSkills"
+        android:label="@string/skills"
+        tools:layout="@layout/character_skills_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_attacks"
+        android:name="com.fexed.charactersheet.ui.characterattacks.CharacterAttacks"
+        android:label="@string/attacchi"
+        tools:layout="@layout/character_attacks_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_spells"
+        android:name="com.fexed.charactersheet.ui.characterattacks.CharacterSpells"
+        android:label="@string/incantesimi"
+        tools:layout="@layout/character_spells_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_inventory"
+        android:name="com.fexed.charactersheet.ui.characterinventory.CharacterInventory"
+        android:label="@string/inventario"
+        tools:layout="@layout/character_inventory_fragment" />
+
+</navigation>

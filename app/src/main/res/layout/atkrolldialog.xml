@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <SeekBar
+        android:id="@+id/atkrolltypeseekbar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:max="2"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atkrollprofchk" />
+
+    <TextView
+        android:id="@+id/skillslbl4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/disadvantage"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/atkrolltypeseekbar"
+        app:layout_constraintEnd_toStartOf="@+id/atkrolltypeseekbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/atkrolltypeseekbar" />
+
+    <TextView
+        android:id="@+id/skillslbl5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/advantage"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/atkrolltypeseekbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/atkrolltypeseekbar"
+        app:layout_constraintTop_toTopOf="@+id/atkrolltypeseekbar" />
+
+    <TextView
+        android:id="@+id/atkrolltitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newatk"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/atkrollstatspinner"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:entries="@array/selectatkstat"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toStartOf="@+id/atkrolltitle2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolltitle" />
+
+    <TextView
+        android:id="@+id/atkrolltitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/atkrollstatspinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/atkrollstatspinner" />
+
+    <TextView
+        android:id="@+id/atkrolltitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/comp"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/atkrollprofchk"
+        app:layout_constraintStart_toEndOf="@+id/atkrollprofchk"
+        app:layout_constraintTop_toTopOf="@+id/atkrollprofchk" />
+
+    <CheckBox
+        android:id="@+id/atkrollprofchk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/atkrollstatspinner"
+        app:layout_constraintStart_toEndOf="@+id/atkrolltitle2"
+        app:layout_constraintTop_toTopOf="@+id/atkrollstatspinner" />
+
+    <Button
+        android:id="@+id/atkrollbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/roll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atkrolltypeseekbar" />
+</androidx.constraintlayout.widget.ConstraintLayout>
