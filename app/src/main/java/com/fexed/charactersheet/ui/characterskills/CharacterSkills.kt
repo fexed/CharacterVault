@@ -43,10 +43,10 @@ class CharacterSkills : Fragment() {
             activity?.findViewById<TextView>(R.id.skills_pglv)!!.text = it.pglv.toString()
 
             if (it is DnD5eCharacter) {
-                val sharedPreferences = context!!.getSharedPreferences(context!!.getString(R.string.app_package), Context.MODE_PRIVATE)
+                val sharedPreferences = requireContext().getSharedPreferences(requireContext().getString(R.string.app_package), Context.MODE_PRIVATE)
                 if (!(sharedPreferences.getBoolean("skillstutorial", false))) {
                     sharedPreferences.edit().putBoolean("skillstutorial", true).apply()
-                    val taptorollballoon = Balloon.Builder(context!!)
+                    val taptorollballoon = Balloon.Builder(requireContext())
                         .setText(getString(R.string.taptorolltutorial))
                         .setPadding(16)
                         .setIsVisibleOverlay(true)
@@ -55,7 +55,7 @@ class CharacterSkills : Fragment() {
                         .setDismissWhenOverlayClicked(true)
                         .setOverlayShape(BalloonOverlayRect)
                         .build()
-                    val taptorollballoon2 = Balloon.Builder(context!!)
+                    val taptorollballoon2 = Balloon.Builder(requireContext())
                         .setText(getString(R.string.taptorolltutorial))
                         .setPadding(16)
                         .setIsVisibleOverlay(true)
@@ -64,7 +64,7 @@ class CharacterSkills : Fragment() {
                         .setDismissWhenOverlayClicked(true)
                         .setOverlayShape(BalloonOverlayRect)
                         .build()
-                    val setrolltypetutorial = Balloon.Builder(context!!)
+                    val setrolltypetutorial = Balloon.Builder(requireContext())
                         .setText(getString(R.string.dragtoadvantage))
                         .setPadding(16)
                         .setIsVisibleOverlay(true)
@@ -73,7 +73,7 @@ class CharacterSkills : Fragment() {
                         .setDismissWhenOverlayClicked(true)
                         .setOverlayShape(BalloonOverlayRect)
                         .build()
-                    val customrolltutorial = Balloon.Builder(context!!)
+                    val customrolltutorial = Balloon.Builder(requireContext())
                         .setText(getString(R.string.rolldialogtutorial))
                         .setPadding(16)
                         .setArrowOrientation(ArrowOrientation.RIGHT)
@@ -640,7 +640,7 @@ class CharacterSkills : Fragment() {
         if (character is DnD5eCharacter) {
             activity?.findViewById<FloatingActionButton>(R.id.dicefab)!!.setOnClickListener {
                 var macro = ""
-                val newmacrodialog = Dialog(context!!)
+                val newmacrodialog = Dialog(requireContext())
                 newmacrodialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 newmacrodialog.setContentView(R.layout.newmacro)
                 newmacrodialog.findViewById<TextView>(R.id.newmacrotitle).text = getString(R.string.newroll)
@@ -694,9 +694,9 @@ class CharacterSkills : Fragment() {
 
     private fun rollDialog(roll : Diceroll, title : String) {
         when (activity?.findViewById<SeekBar>(R.id.rolltypeseekbar)!!.progress) {
-            0 -> Diceroll.rollDouble(context!!, roll, title, false)
-            1 -> Diceroll.rollDialog(context!!, roll, title)
-            2 -> Diceroll.rollDouble(context!!, roll, title, true)
+            0 -> Diceroll.rollDouble(requireContext(), roll, title, false)
+            1 -> Diceroll.rollDialog(requireContext(), roll, title)
+            2 -> Diceroll.rollDouble(requireContext(), roll, title, true)
         }
     }
 }

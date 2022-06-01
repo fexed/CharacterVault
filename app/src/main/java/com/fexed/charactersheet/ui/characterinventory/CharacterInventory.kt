@@ -86,32 +86,32 @@ class CharacterInventory : Fragment() {
         activity?.findViewById<FloatingActionButton>(R.id.invaddfab)!!.setOnClickListener {
             activity?.findViewById<FloatingActionButton>(R.id.invaddfab)!!.visibility = View.INVISIBLE
             activity?.findViewById<FloatingActionButton>(R.id.invremovefab)!!.visibility = View.INVISIBLE
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.newitem)
             dialog.findViewById<ImageButton>(R.id.itemlistbtn).setOnClickListener {
-                val builder = Dialog(context!!)
+                val builder = Dialog(requireContext())
                 builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 builder.setContentView(R.layout.dbitemselectdialog)
                 builder.findViewById<TextView>(R.id.dbselecttitle).text = getString(R.string.newitem)
-                val spinnderadapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, context!!.resources.getStringArray(R.array.itemnames))
+                val spinnderadapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, requireContext().resources.getStringArray(R.array.itemnames))
                 builder.findViewById<Spinner>(R.id.dbselectspinner).adapter = spinnderadapter
 
                 builder.findViewById<EditText>(R.id.dbselectsearchbox).doAfterTextChanged { txt ->
-                    var list = context!!.resources.getStringArray(R.array.itemnames).toList()
+                    var list = requireContext().resources.getStringArray(R.array.itemnames).toList()
                     list = list.filter { it.lowercase().contains(txt.toString().lowercase()) }
-                    val newadapt = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, list)
+                    val newadapt = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, list)
                     builder.findViewById<Spinner>(R.id.dbselectspinner).adapter = newadapt
                 }
 
                 builder.findViewById<Button>(R.id.dbitemconfirm).setOnClickListener { _ ->
                     builder.dismiss()
                     val selecteditem = builder.findViewById<Spinner>(R.id.dbselectspinner).selectedItem
-                    val selected = context!!.resources.getStringArray(R.array.itemnames).indexOf(selecteditem)
-                    val itemname = context!!.resources.getStringArray(R.array.itemnames)[selected]
-                    val itemdesc = context!!.resources.getStringArray(R.array.itemdescs)[selected]
-                    val itemweight = context!!.resources.getStringArray(R.array.itemweights)[selected].toDouble()
-                    val itembonuses = context!!.resources.getStringArray(R.array.itembonuses)[selected]
+                    val selected = requireContext().resources.getStringArray(R.array.itemnames).indexOf(selecteditem)
+                    val itemname = requireContext().resources.getStringArray(R.array.itemnames)[selected]
+                    val itemdesc = requireContext().resources.getStringArray(R.array.itemdescs)[selected]
+                    val itemweight = requireContext().resources.getStringArray(R.array.itemweights)[selected].toDouble()
+                    val itembonuses = requireContext().resources.getStringArray(R.array.itembonuses)[selected]
 
                     dialog.findViewById<EditText>(R.id.itemname_input).setText(itemname)
                     dialog.findViewById<EditText>(R.id.itemdesc_input).setText(itemdesc)
@@ -208,7 +208,7 @@ class CharacterInventory : Fragment() {
         activity?.findViewById<FloatingActionButton>(R.id.goldfab)!!.setOnClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 dialog.setContentView(R.layout.spenddialog)
                 var mpvar = 0

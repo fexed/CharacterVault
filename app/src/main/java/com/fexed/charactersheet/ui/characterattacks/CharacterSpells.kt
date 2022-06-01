@@ -61,10 +61,10 @@ class CharacterSpells : Fragment() {
             activity?.findViewById<TextView>(R.id.spells_pgname)!!.text = it.pgname
             activity?.findViewById<TextView>(R.id.spells_pglv)!!.text = it.pglv.toString()
             if (it is DnD5eCharacter) {
-                val sharedPreferences = context!!.getSharedPreferences(context!!.getString(R.string.app_package), Context.MODE_PRIVATE)
+                val sharedPreferences = requireContext().getSharedPreferences(requireContext().getString(R.string.app_package), Context.MODE_PRIVATE)
                 if (!(sharedPreferences.getBoolean("spellstutorial", false))) {
                     sharedPreferences.edit().putBoolean("spellstutorial", true).apply()
-                    val taptorollballoon = Balloon.Builder(context!!)
+                    val taptorollballoon = Balloon.Builder(requireContext())
                         .setText(getString(R.string.taptorolltutorial))
                         .setPadding(16)
                         .setIsVisibleOverlay(true)
@@ -73,7 +73,7 @@ class CharacterSpells : Fragment() {
                         .setDismissWhenOverlayClicked(true)
                         .setOverlayShape(BalloonOverlayRect)
                         .build()
-                    val taptorollballoon2 = Balloon.Builder(context!!)
+                    val taptorollballoon2 = Balloon.Builder(requireContext())
                         .setText(getString(R.string.keeptoedit))
                         .setPadding(16)
                         .setArrowPosition(0.33F)
@@ -193,7 +193,7 @@ class CharacterSpells : Fragment() {
         val charact = viewModel.currentcharacter.value
         if (charact is DnD5eCharacter) {
             activity?.findViewById<TextView>(R.id.spells_stat)!!.setOnLongClickListener {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 dialog.setContentView(R.layout.selectstat)
                 dialog.findViewById<Button>(R.id.spellstatselect_confirm)!!.setOnClickListener {
@@ -401,14 +401,14 @@ class CharacterSpells : Fragment() {
             cantripssadapter = AttackRecyclerViewAdapter(viewModel, charact.cantrips, charact, deletemode, 0)
             cantripsrecv.adapter = null
             cantripsrecv.adapter = cantripssadapter
-            cantripsrecv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            cantripsrecv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
             val slot1recv = activity?.findViewById<RecyclerView>(R.id.slot1recv)!!
             slot1recv.layoutManager = LinearLayoutManager(context)
             slot1sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot1, charact, deletemode, 1)
             slot1recv.adapter = null
             slot1recv.adapter = slot1sadapter
-            slot1recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot1recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level1currslots)!!.text = charact.currslot1.toString()
             activity?.findViewById<TextView>(R.id.level1maxslots)!!.text = charact.nslot1.toString()
 
@@ -417,7 +417,7 @@ class CharacterSpells : Fragment() {
             slot2sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot2, charact, deletemode, 2)
             slot2recv.adapter = null
             slot2recv.adapter = slot2sadapter
-            slot2recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot2recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level2currslots)!!.text = charact.currslot2.toString()
             activity?.findViewById<TextView>(R.id.level2maxslots)!!.text = charact.nslot2.toString()
 
@@ -426,7 +426,7 @@ class CharacterSpells : Fragment() {
             slot3sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot3, charact, deletemode, 3)
             slot3recv.adapter = null
             slot3recv.adapter = slot3sadapter
-            slot3recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot3recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level3currslots)!!.text = charact.currslot3.toString()
             activity?.findViewById<TextView>(R.id.level3maxslots)!!.text = charact.nslot3.toString()
 
@@ -435,7 +435,7 @@ class CharacterSpells : Fragment() {
             slot4sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot4, charact, deletemode, 4)
             slot4recv.adapter = null
             slot4recv.adapter = slot4sadapter
-            slot4recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot4recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level4currslots)!!.text = charact.currslot4.toString()
             activity?.findViewById<TextView>(R.id.level4maxslots)!!.text = charact.nslot4.toString()
 
@@ -444,7 +444,7 @@ class CharacterSpells : Fragment() {
             slot5sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot5, charact, deletemode, 5)
             slot5recv.adapter = null
             slot5recv.adapter = slot5sadapter
-            slot5recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot5recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level5currslots)!!.text = charact.currslot5.toString()
             activity?.findViewById<TextView>(R.id.level5maxslots)!!.text = charact.nslot5.toString()
 
@@ -453,7 +453,7 @@ class CharacterSpells : Fragment() {
             slot6sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot6, charact, deletemode, 6)
             slot6recv.adapter = null
             slot6recv.adapter = slot6sadapter
-            slot6recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot6recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level6currslots)!!.text = charact.currslot6.toString()
             activity?.findViewById<TextView>(R.id.level6maxslots)!!.text = charact.nslot6.toString()
 
@@ -462,7 +462,7 @@ class CharacterSpells : Fragment() {
             slot7sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot7, charact, deletemode, 7)
             slot7recv.adapter = null
             slot7recv.adapter = slot7sadapter
-            slot7recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot7recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level7currslots)!!.text = charact.currslot7.toString()
             activity?.findViewById<TextView>(R.id.level7maxslots)!!.text = charact.nslot7.toString()
 
@@ -471,7 +471,7 @@ class CharacterSpells : Fragment() {
             slot8sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot8, charact, deletemode, 8)
             slot8recv.adapter = null
             slot8recv.adapter = slot8sadapter
-            slot8recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot8recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level8currslots)!!.text = charact.currslot8.toString()
             activity?.findViewById<TextView>(R.id.level8maxslots)!!.text = charact.nslot8.toString()
 
@@ -480,7 +480,7 @@ class CharacterSpells : Fragment() {
             slot9sadapter = AttackRecyclerViewAdapter(viewModel, charact.slot9, charact, deletemode, 9)
             slot9recv.adapter = null
             slot9recv.adapter = slot9sadapter
-            slot9recv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            slot9recv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             activity?.findViewById<TextView>(R.id.level9currslots)!!.text = charact.currslot9.toString()
             activity?.findViewById<TextView>(R.id.level9maxslots)!!.text = charact.nslot9.toString()
         }
@@ -507,7 +507,7 @@ class CharacterSpells : Fragment() {
         }
 
         activity?.findViewById<FloatingActionButton>(R.id.spellsaddfab)!!.setOnClickListener {
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             activity?.findViewById<FloatingActionButton>(R.id.spellsaddfab)!!.visibility = View.INVISIBLE
             activity?.findViewById<FloatingActionButton>(R.id.spellsremovefab)!!.visibility = View.INVISIBLE
             activity?.findViewById<FloatingActionButton>(R.id.spellseditslotsfab)!!.visibility = View.INVISIBLE
@@ -516,28 +516,28 @@ class CharacterSpells : Fragment() {
             dialog.findViewById<TextView>(R.id.textView8).text = getString(R.string.newspell)
             var macro = ""
             dialog.findViewById<ImageButton>(R.id.attacklistbtn).setOnClickListener {
-                val builder = Dialog(context!!)
+                val builder = Dialog(requireContext())
                 builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 builder.setContentView(R.layout.dbitemselectdialog)
                 builder.findViewById<TextView>(R.id.dbselecttitle).text = getString(R.string.newspell)
-                val spinnderadapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, context!!.resources.getStringArray(R.array.spellnames))
+                val spinnderadapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, requireContext().resources.getStringArray(R.array.spellnames))
                 builder.findViewById<Spinner>(R.id.dbselectspinner).adapter = spinnderadapter
 
                 builder.findViewById<EditText>(R.id.dbselectsearchbox).doAfterTextChanged { txt ->
-                    var list = context!!.resources.getStringArray(R.array.spellnames).toList()
+                    var list = requireContext().resources.getStringArray(R.array.spellnames).toList()
                     list = list.filter { it.lowercase().contains(txt.toString().lowercase()) }
-                    val newadapt = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, list)
+                    val newadapt = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, list)
                     builder.findViewById<Spinner>(R.id.dbselectspinner).adapter = newadapt
                 }
 
                 builder.findViewById<Button>(R.id.dbitemconfirm).setOnClickListener { _ ->
                     builder.dismiss()
                     val selecteditem = builder.findViewById<Spinner>(R.id.dbselectspinner).selectedItem
-                    val selected = context!!.resources.getStringArray(R.array.spellnames).indexOf(selecteditem)
-                    val spellname = context!!.resources.getStringArray(R.array.spellnames)[selected]
-                    val spelldesc = context!!.resources.getStringArray(R.array.spelldescs)[selected]
-                    val spelllevel = context!!.resources.getStringArray(R.array.spelllevels)[selected].toInt()
-                    val spellmacro = context!!.resources.getStringArray(R.array.spellmacros)[selected]
+                    val selected = requireContext().resources.getStringArray(R.array.spellnames).indexOf(selecteditem)
+                    val spellname = requireContext().resources.getStringArray(R.array.spellnames)[selected]
+                    val spelldesc = requireContext().resources.getStringArray(R.array.spelldescs)[selected]
+                    val spelllevel = requireContext().resources.getStringArray(R.array.spelllevels)[selected].toInt()
+                    val spellmacro = requireContext().resources.getStringArray(R.array.spellmacros)[selected]
 
                     dialog.findViewById<EditText>(R.id.attackname_input).setText(spellname)
                     dialog.findViewById<EditText>(R.id.attackdesc_input).setText(spelldesc)
@@ -557,7 +557,7 @@ class CharacterSpells : Fragment() {
                 builder.show()
             }
             dialog.findViewById<Button>(R.id.createmacrobtn).setOnClickListener {
-                val newmacrodialog = Dialog(context!!)
+                val newmacrodialog = Dialog(requireContext())
                 newmacrodialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 newmacrodialog.setContentView(R.layout.newmacro)
                 newmacrodialog.findViewById<Button>(R.id.newmacro_ok).setOnClickListener {
@@ -641,7 +641,7 @@ class CharacterSpells : Fragment() {
 
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.editspellslotsdialog)
                 
                 var nslot1 = charact.nslot1
@@ -785,6 +785,6 @@ class CharacterSpells : Fragment() {
     }
 
     private fun rollDialog(roll : Diceroll, title : String) {
-        Diceroll.rollDialog(context!!, roll, title)
+        Diceroll.rollDialog(requireContext(), roll, title)
     }
 }

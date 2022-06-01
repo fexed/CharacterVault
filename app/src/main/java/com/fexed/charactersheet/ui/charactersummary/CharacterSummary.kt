@@ -41,8 +41,8 @@ class CharacterSummary : Fragment() {
     private val viewModel: CharacterViewModel by activityViewModels()
 
     private val getPropic = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        val instream = context!!.contentResolver.openInputStream(uri)
-        val outfile = File("${context!!.filesDir.absoluteFile}/${viewModel.currentcharacter.value!!.pgname}.png")
+        val instream = requireContext().contentResolver.openInputStream(uri)
+        val outfile = File("${requireContext().filesDir.absoluteFile}/${viewModel.currentcharacter.value!!.pgname}.png")
         val output = FileOutputStream(outfile)
         instream?.copyTo(output, 4 * 1024)
         instream?.close()
@@ -67,14 +67,14 @@ class CharacterSummary : Fragment() {
             startActivity(intent)
         } else {
             val bottomSheetBehavior = BottomSheetBehavior.from(activity?.findViewById<LinearLayout>(R.id.bottomnav)!!)
-            val sharedPreferences = context!!.getSharedPreferences(context!!.getString(R.string.app_package), Context.MODE_PRIVATE)
+            val sharedPreferences = requireContext().getSharedPreferences(requireContext().getString(R.string.app_package), Context.MODE_PRIVATE)
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 bottomSheetBehavior.setPeekHeight(200, true)
             } else {
                 bottomSheetBehavior.setPeekHeight(125, true)
             }
 
-            viewModel.currentcharacter.observe(viewLifecycleOwner, {
+            viewModel.currentcharacter.observe(viewLifecycleOwner) {
                 activity?.findViewById<TextView>(R.id.pgname)!!.text = it.pgname
                 activity?.findViewById<TextView>(R.id.pgclass)!!.text = it.pgclass
                 activity?.findViewById<TextView>(R.id.pglv)!!.text = it.pglv.toString()
@@ -82,14 +82,16 @@ class CharacterSummary : Fragment() {
 
                 if (it is DnD5eCharacter) {
                     if (viewModel.currentcharacter.value!!.portrait == null) {
-                        activity?.findViewById<ImageView>(R.id.pgportrait)!!.setImageResource(R.mipmap.nopic)
+                        activity?.findViewById<ImageView>(R.id.pgportrait)!!
+                            .setImageResource(R.mipmap.nopic)
                     } else {
                         activity?.findViewById<ImageView>(R.id.pgportrait)!!.setImageDrawable(null)
-                        activity?.findViewById<ImageView>(R.id.pgportrait)!!.setImageURI(Uri.parse(viewModel.currentcharacter.value!!.portrait))
+                        activity?.findViewById<ImageView>(R.id.pgportrait)!!
+                            .setImageURI(Uri.parse(viewModel.currentcharacter.value!!.portrait))
                     }
                     if (!(sharedPreferences.getBoolean("summarytutorial", false))) {
                         sharedPreferences.edit().putBoolean("summarytutorial", true).apply()
-                        val keeptoeditballoon = Balloon.Builder(context!!)
+                        val keeptoeditballoon = Balloon.Builder(requireContext())
                             .setText(getString(R.string.keeptoedittutorial))
                             .setPadding(16)
                             .setIsVisibleOverlay(true)
@@ -98,7 +100,7 @@ class CharacterSummary : Fragment() {
                             .setDismissWhenOverlayClicked(true)
                             .setOverlayShape(BalloonOverlayRect)
                             .build()
-                        val taptorollballoon = Balloon.Builder(context!!)
+                        val taptorollballoon = Balloon.Builder(requireContext())
                             .setText(getString(R.string.taptorolltutorial))
                             .setPadding(16)
                             .setIsVisibleOverlay(true)
@@ -107,7 +109,7 @@ class CharacterSummary : Fragment() {
                             .setDismissWhenOverlayClicked(true)
                             .setOverlayShape(BalloonOverlayRect)
                             .build()
-                        val keeptoedithp = Balloon.Builder(context!!)
+                        val keeptoedithp = Balloon.Builder(requireContext())
                             .setText(getString(R.string.keeptoedit))
                             .setPadding(16)
                             .setArrowOrientation(ArrowOrientation.RIGHT)
@@ -117,7 +119,7 @@ class CharacterSummary : Fragment() {
                             .setDismissWhenOverlayClicked(true)
                             .setOverlayShape(BalloonOverlayRect)
                             .build()
-                        val slidenotes = Balloon.Builder(context!!)
+                        val slidenotes = Balloon.Builder(requireContext())
                             .setText(getString(R.string.dragnotestutorial))
                             .setPadding(16)
                             .setIsVisibleOverlay(true)
@@ -126,7 +128,7 @@ class CharacterSummary : Fragment() {
                             .setDismissWhenOverlayClicked(true)
                             .setOverlayShape(BalloonOverlayRect)
                             .build()
-                        val keeptoeditlv = Balloon.Builder(context!!)
+                        val keeptoeditlv = Balloon.Builder(requireContext())
                             .setText(getString(R.string.keeptoedit))
                             .setPadding(16)
                             .setArrowOrientation(ArrowOrientation.RIGHT)
@@ -136,23 +138,44 @@ class CharacterSummary : Fragment() {
                             .setDismissWhenOverlayClicked(true)
                             .setOverlayShape(BalloonOverlayRect)
                             .build()
-                        keeptoeditlv.relayShowAlignBottom(keeptoeditballoon, activity?.findViewById<TextView>(R.id.COS)!!)
-                        keeptoeditballoon.relayShowAlignBottom(taptorollballoon, activity?.findViewById<TextView>(R.id.INTmod)!!)
-                        taptorollballoon.relayShowAlignLeft(keeptoedithp, activity?.findViewById<TextView>(R.id.PFmax)!!)
-                        keeptoedithp.relayShowAlignBottom(slidenotes, activity?.findViewById<LinearLayout>(R.id.bottomnav)!!)
+                        keeptoeditlv.relayShowAlignBottom(
+                            keeptoeditballoon,
+                            activity?.findViewById<TextView>(R.id.COS)!!
+                        )
+                        keeptoeditballoon.relayShowAlignBottom(
+                            taptorollballoon,
+                            activity?.findViewById<TextView>(R.id.INTmod)!!
+                        )
+                        taptorollballoon.relayShowAlignLeft(
+                            keeptoedithp,
+                            activity?.findViewById<TextView>(R.id.PFmax)!!
+                        )
+                        keeptoedithp.relayShowAlignBottom(
+                            slidenotes,
+                            activity?.findViewById<LinearLayout>(R.id.bottomnav)!!
+                        )
                         activity?.findViewById<TextView>(R.id.pglv)!!.post {
                             keeptoeditlv.showAlignLeft(activity?.findViewById<TextView>(R.id.pglv)!!)
                         }
                     }
-                    activity?.findViewById<TextView>(R.id.FOR)!!.text = (it.STR + it.getbonuses("STR")).toString()
-                    activity?.findViewById<TextView>(R.id.DEX)!!.text = (it.DEX + it.getbonuses("DEX")).toString()
-                    activity?.findViewById<TextView>(R.id.COS)!!.text = (it.CON + it.getbonuses("CON")).toString()
-                    activity?.findViewById<TextView>(R.id.SAG)!!.text = (it.WIS + it.getbonuses("WIS")).toString()
-                    activity?.findViewById<TextView>(R.id.INT)!!.text = (it.INT + it.getbonuses("INT")).toString()
-                    activity?.findViewById<TextView>(R.id.CAR)!!.text = (it.CHA + it.getbonuses("CHA")).toString()
-                    activity?.findViewById<TextView>(R.id.speed)!!.text = it.speed.toString() + " ft."
-                    activity?.findViewById<TextView>(R.id.initiative)!!.text = (if (it.initative >= 0) "+" else "") + it.initative.toString()
-                    activity?.findViewById<TextView>(R.id.passivperc)!!.text = it.passiveperc.toString()
+                    activity?.findViewById<TextView>(R.id.FOR)!!.text =
+                        (it.STR + it.getbonuses("STR")).toString()
+                    activity?.findViewById<TextView>(R.id.DEX)!!.text =
+                        (it.DEX + it.getbonuses("DEX")).toString()
+                    activity?.findViewById<TextView>(R.id.COS)!!.text =
+                        (it.CON + it.getbonuses("CON")).toString()
+                    activity?.findViewById<TextView>(R.id.SAG)!!.text =
+                        (it.WIS + it.getbonuses("WIS")).toString()
+                    activity?.findViewById<TextView>(R.id.INT)!!.text =
+                        (it.INT + it.getbonuses("INT")).toString()
+                    activity?.findViewById<TextView>(R.id.CAR)!!.text =
+                        (it.CHA + it.getbonuses("CHA")).toString()
+                    activity?.findViewById<TextView>(R.id.speed)!!.text =
+                        it.speed.toString() + " ft."
+                    activity?.findViewById<TextView>(R.id.initiative)!!.text =
+                        (if (it.initative >= 0) "+" else "") + it.initative.toString()
+                    activity?.findViewById<TextView>(R.id.passivperc)!!.text =
+                        it.passiveperc.toString()
 
                     val modstr = (if (it.modSTR >= 0) "+" else "") + it.modSTR.toString()
                     activity?.findViewById<TextView>(R.id.FORmod)!!.text = modstr
@@ -172,13 +195,20 @@ class CharacterSummary : Fragment() {
                     val modcar = (if (it.modCHA >= 0) "+" else "") + it.modCHA.toString()
                     activity?.findViewById<TextView>(R.id.CARmod)!!.text = modcar
 
-                    activity?.findViewById<TextView>(R.id.CA)!!.text = (it.AC + it.getbonuses("AC")).toString()
+                    activity?.findViewById<TextView>(R.id.CA)!!.text =
+                        (it.AC + it.getbonuses("AC")).toString()
                     activity?.findViewById<TextView>(R.id.PF)!!.text = it.CurrHP.toString()
-                    activity?.findViewById<TextView>(R.id.PFmax)!!.text = (it.MaxHP + it.getbonuses("MHP")).toString()
+                    activity?.findViewById<TextView>(R.id.PFmax)!!.text =
+                        (it.MaxHP + it.getbonuses("MHP")).toString()
                     activity?.findViewById<TextView>(R.id.pgxp)!!.text = it.xp.toString()
                     if (it.pglv < 20 && it.xp >= it.nextlvlxp) {
-                        activity?.findViewById<TextView>(R.id.pgxp)!!.text = context!!.getString(R.string.lvlup) + " " + it.xp.toString()
-                        Toast.makeText(context!!, getString(R.string.newlevel, "" + (it.pglv + 1)), Toast.LENGTH_SHORT).show()
+                        activity?.findViewById<TextView>(R.id.pgxp)!!.text =
+                            requireContext().getString(R.string.lvlup) + " " + it.xp.toString()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.newlevel, "" + (it.pglv + 1)),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     val profbonus = (if (it.profbonus >= 0) "+" else "") + it.profbonus.toString()
@@ -186,7 +216,7 @@ class CharacterSummary : Fragment() {
                 } else {
                     //TODO non è PG 5e
                 }
-            })
+            }
             prepareClickListeners()
             prepareLongClickListeners()
         }
@@ -203,14 +233,14 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.passivperc)!!.setOnClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                Toast.makeText(context!!, R.string.passiveperccalc, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.passiveperccalc, Toast.LENGTH_LONG).show()
             }
         }
 
         activity?.findViewById<ImageButton>(R.id.xpaddbtn)!!.setOnClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.addxpof)
                 dialog.findViewById<EditText>(R.id.newvalueinput).setRawInputType(InputType.TYPE_NUMBER_FLAG_SIGNED)
@@ -342,7 +372,7 @@ class CharacterSummary : Fragment() {
     private fun prepareLongClickListeners() {
         activity?.findViewById<ImageView>(R.id.pgportrait)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
-            val builder = AlertDialog.Builder(context!!)
+            val builder = AlertDialog.Builder(requireContext())
             builder.setTitle(getString(R.string.dialogpropictitle, charact!!.pgname))
             builder.setPositiveButton(R.string.dialogpropicselect) { d, _ ->
                 d.dismiss()
@@ -363,7 +393,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.pgclass)!!.setOnLongClickListener{
             //TODO classes
             val charact = viewModel.currentcharacter.value
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.newvaluelayout)
             dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.insertnewclass, charact!!.pgname)
             dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.pgclass)
@@ -384,7 +414,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.pgrace)!!.setOnLongClickListener{
             //TODO races
             val charact = viewModel.currentcharacter.value
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.newvaluelayout)
             dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.insertnewrace, charact!!.pgname)
             dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.pgrace)
@@ -403,7 +433,7 @@ class CharacterSummary : Fragment() {
 
         activity?.findViewById<TextView>(R.id.pglv)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.newvaluelayout)
             dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.livello_totale))
             dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact!!.pglv.toString())
@@ -424,7 +454,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.FOR)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.forza))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.STR.toString())
@@ -451,7 +481,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.DEX)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.destrezza))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.DEX.toString())
@@ -478,7 +508,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.COS)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.costituzione))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.CON.toString())
@@ -505,7 +535,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.SAG)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.saggezza))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.WIS.toString())
@@ -532,7 +562,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.INT)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.intelligenza))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.INT.toString())
@@ -559,7 +589,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.CAR)!!.setOnLongClickListener{
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.carisma))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.CHA.toString())
@@ -586,7 +616,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<ImageButton>(R.id.pfplus)!!.setOnLongClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.entercure)
                 dialog.findViewById<EditText>(R.id.newvalueinput).setRawInputType(InputType.TYPE_CLASS_NUMBER)
@@ -610,7 +640,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<ImageButton>(R.id.pfminus)!!.setOnLongClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.enterdamage)
                 dialog.findViewById<EditText>(R.id.newvalueinput).setRawInputType(InputType.TYPE_CLASS_NUMBER)
@@ -634,7 +664,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.PFmax)!!.setOnLongClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.insertmaxpf)
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.MaxHP.toString())
@@ -661,7 +691,7 @@ class CharacterSummary : Fragment() {
         activity?.findViewById<TextView>(R.id.CA)!!.setOnLongClickListener {
             val charact = viewModel.currentcharacter.value
             if (charact is DnD5eCharacter) {
-                val dialog = Dialog(context!!)
+                val dialog = Dialog(requireContext())
                 dialog.setContentView(R.layout.newvaluelayout)
                 dialog.findViewById<TextView>(R.id.newvaluetitle).text = getString(R.string.newvalue, getString(R.string.classe_armatura))
                 dialog.findViewById<EditText>(R.id.newvalueinput).setText(charact.AC.toString())
@@ -687,6 +717,6 @@ class CharacterSummary : Fragment() {
     }
 
     private fun rollDialog(roll : Diceroll, title : String) {
-        Diceroll.rollDialog(context!!, roll, title)
+        Diceroll.rollDialog(requireContext(), roll, title)
     }
 }

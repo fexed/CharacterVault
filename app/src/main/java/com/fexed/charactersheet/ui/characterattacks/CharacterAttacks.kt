@@ -62,7 +62,7 @@ class CharacterAttacks : Fragment() {
             attackadapter = AttackRecyclerViewAdapter(viewModel, charact.attacks, charact, deletemode, -1)
             attackrecv.adapter = null
             attackrecv.adapter = attackadapter
-            attackrecv.addItemDecoration(DividerItemDecoration(context!!, LinearLayoutManager.VERTICAL))
+            attackrecv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         }
     }
 
@@ -84,37 +84,37 @@ class CharacterAttacks : Fragment() {
         }
 
         activity?.findViewById<FloatingActionButton>(R.id.addfab)!!.setOnClickListener {
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             activity?.findViewById<FloatingActionButton>(R.id.addfab)!!.visibility = View.INVISIBLE
             activity?.findViewById<FloatingActionButton>(R.id.removefab)!!.visibility = View.INVISIBLE
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.newattack)
-            val atktypeadapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, context!!.resources.getStringArray(R.array.selectableatktype))
+            val atktypeadapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, requireContext().resources.getStringArray(R.array.selectableatktype))
             dialog.findViewById<Spinner>(R.id.spelllevel_input).adapter = atktypeadapter
             var macro = ""
             dialog.findViewById<ImageButton>(R.id.attacklistbtn).setOnClickListener {
-                val builder = Dialog(context!!)
+                val builder = Dialog(requireContext())
                 builder.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 builder.setContentView(R.layout.dbitemselectdialog)
                 builder.findViewById<TextView>(R.id.dbselecttitle).text = getString(R.string.newattack)
-                val spinnderadapter = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, context!!.resources.getStringArray(R.array.weaponnames))
+                val spinnderadapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, requireContext().resources.getStringArray(R.array.weaponnames))
                 builder.findViewById<Spinner>(R.id.dbselectspinner).adapter = spinnderadapter
 
                 builder.findViewById<EditText>(R.id.dbselectsearchbox).doAfterTextChanged { txt ->
-                    var list = context!!.resources.getStringArray(R.array.weaponnames).toList()
+                    var list = requireContext().resources.getStringArray(R.array.weaponnames).toList()
                     list = list.filter { it.lowercase().contains(txt.toString().lowercase()) }
-                    val newadapt = ArrayAdapter(context!!, android.R.layout.simple_spinner_dropdown_item, list)
+                    val newadapt = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, list)
                     builder.findViewById<Spinner>(R.id.dbselectspinner).adapter = newadapt
                 }
 
                 builder.findViewById<Button>(R.id.dbitemconfirm).setOnClickListener { _ ->
                     builder.dismiss()
                     val selecteditem = builder.findViewById<Spinner>(R.id.dbselectspinner).selectedItem
-                    val selected = context!!.resources.getStringArray(R.array.weaponnames).indexOf(selecteditem)
-                    val weaponname = context!!.resources.getStringArray(R.array.weaponnames)[selected]
-                    val weapondesc = context!!.resources.getStringArray(R.array.weapondescs)[selected]
-                    val weaponmacro = context!!.resources.getStringArray(R.array.weaponmacros)[selected]
-                    val weaponetype = context!!.resources.getStringArray(R.array.weapontypes)[selected]
+                    val selected = requireContext().resources.getStringArray(R.array.weaponnames).indexOf(selecteditem)
+                    val weaponname = requireContext().resources.getStringArray(R.array.weaponnames)[selected]
+                    val weapondesc = requireContext().resources.getStringArray(R.array.weapondescs)[selected]
+                    val weaponmacro = requireContext().resources.getStringArray(R.array.weaponmacros)[selected]
+                    val weaponetype = requireContext().resources.getStringArray(R.array.weapontypes)[selected]
 
                     dialog.findViewById<EditText>(R.id.attackname_input).setText(weaponname)
                     dialog.findViewById<EditText>(R.id.attackdesc_input).setText(weapondesc)
@@ -134,7 +134,7 @@ class CharacterAttacks : Fragment() {
                 builder.show()
             }
             dialog.findViewById<Button>(R.id.createmacrobtn).setOnClickListener {
-                val newmacrodialog = Dialog(context!!)
+                val newmacrodialog = Dialog(requireContext())
                 newmacrodialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 newmacrodialog.setContentView(R.layout.newmacro)
                 newmacrodialog.findViewById<Button>(R.id.newmacro_ok).setOnClickListener {
@@ -213,7 +213,7 @@ class CharacterAttacks : Fragment() {
 
         activity?.findViewById<FloatingActionButton>(R.id.atkdicefab)!!.setOnClickListener {
             var macro = "1:20:"
-            val dialog = Dialog(context!!)
+            val dialog = Dialog(requireContext())
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setContentView(R.layout.atkrolldialog)
             dialog.findViewById<Button>(R.id.atkrollbtn).setOnClickListener {
@@ -227,9 +227,9 @@ class CharacterAttacks : Fragment() {
                 if (charact is DnD5eCharacter) {
                     val roll = charact.createroll(macro)
                     when (dialog.findViewById<SeekBar>(R.id.atkrolltypeseekbar)!!.progress) {
-                        0 -> Diceroll.rollDouble(context!!, roll, getString(R.string.newattack), false)
-                        1 -> Diceroll.rollDialog(context!!, roll, getString(R.string.newattack))
-                        2 -> Diceroll.rollDouble(context!!, roll, getString(R.string.newattack), true)
+                        0 -> Diceroll.rollDouble(requireContext(), roll, getString(R.string.newattack), false)
+                        1 -> Diceroll.rollDialog(requireContext(), roll, getString(R.string.newattack))
+                        2 -> Diceroll.rollDouble(requireContext(), roll, getString(R.string.newattack), true)
                     }
                 }
                 dialog.dismiss()
