@@ -12,8 +12,7 @@ class Settings : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
         setTitle(R.string.settings)
 
-//        val version = BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")"
-        val version = ""
+        val version = applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).versionName + " (" + applicationContext.packageManager.getPackageInfo(applicationContext.packageName, 0).versionCode + ")"
         findViewById<TextView>(R.id.vertxt).text = version
 
         val sharedPreferences = this.getSharedPreferences(this.getString(R.string.app_package), Context.MODE_PRIVATE)
