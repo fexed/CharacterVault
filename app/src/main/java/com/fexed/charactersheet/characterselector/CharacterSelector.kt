@@ -31,6 +31,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
+import com.skydoves.balloon.animations.BalloonRotateDirection
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
@@ -57,7 +58,7 @@ class CharacterSelector : AppCompatActivity() {
     private val loadChar = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         //TODO handle different types of characters
         try {
-            val instream = contentResolver.openInputStream(uri)
+            val instream = uri?.let { contentResolver.openInputStream(it) }
             val gson = Gson()
             var json = ""
             for (str in instream?.bufferedReader()!!.readLines()) {
@@ -105,7 +106,7 @@ class CharacterSelector : AppCompatActivity() {
             val newcharacterprompt = Balloon.Builder(this)
                 .setText(getString(R.string.createnewcharacterprompt))
                 .setPadding(16)
-                .setArrowOrientation(ArrowOrientation.RIGHT)
+                .setArrowOrientation(ArrowOrientation.END)
                 .build()
             findViewById<FloatingActionButton>(R.id.characterremovefab)!!.post {
                 newcharacterprompt.showAlignLeft(findViewById<FloatingActionButton>(R.id.newcharacterfab)!!)

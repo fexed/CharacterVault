@@ -2,6 +2,7 @@ package com.fexed.charactersheet.ui.charactersummary
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -41,7 +42,7 @@ class CharacterSummary : Fragment() {
     private val viewModel: CharacterViewModel by activityViewModels()
 
     private val getPropic = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        val instream = requireContext().contentResolver.openInputStream(uri)
+        val instream = uri?.let { requireContext().contentResolver.openInputStream(it) }
         val outfile = File("${requireContext().filesDir.absoluteFile}/${viewModel.currentcharacter.value!!.pgname}.png")
         val output = FileOutputStream(outfile)
         instream?.copyTo(output, 4 * 1024)
@@ -112,7 +113,7 @@ class CharacterSummary : Fragment() {
                         val keeptoedithp = Balloon.Builder(requireContext())
                             .setText(getString(R.string.keeptoedit))
                             .setPadding(16)
-                            .setArrowOrientation(ArrowOrientation.RIGHT)
+                            .setArrowOrientation(ArrowOrientation.END)
                             .setIsVisibleOverlay(true)
                             .setOverlayColorResource(R.color.semitrasp)
                             .setOverlayPadding(8f)
@@ -131,7 +132,7 @@ class CharacterSummary : Fragment() {
                         val keeptoeditlv = Balloon.Builder(requireContext())
                             .setText(getString(R.string.keeptoedit))
                             .setPadding(16)
-                            .setArrowOrientation(ArrowOrientation.RIGHT)
+                            .setArrowOrientation(ArrowOrientation.END)
                             .setIsVisibleOverlay(true)
                             .setOverlayColorResource(R.color.semitrasp)
                             .setOverlayPadding(8f)

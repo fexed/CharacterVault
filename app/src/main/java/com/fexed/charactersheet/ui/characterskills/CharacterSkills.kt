@@ -18,6 +18,7 @@ import com.fexed.charactersheet.ui.CharacterViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
+import com.skydoves.balloon.animations.BalloonRotateDirection
 import com.skydoves.balloon.overlay.BalloonOverlayRect
 
 class CharacterSkills : Fragment() {
@@ -76,7 +77,7 @@ class CharacterSkills : Fragment() {
                     val customrolltutorial = Balloon.Builder(requireContext())
                         .setText(getString(R.string.rolldialogtutorial))
                         .setPadding(16)
-                        .setArrowOrientation(ArrowOrientation.RIGHT)
+                        .setArrowOrientation(ArrowOrientation.END)
                         .setIsVisibleOverlay(true)
                         .setOverlayColorResource(R.color.semitrasp)
                         .setOverlayPadding(8f)
